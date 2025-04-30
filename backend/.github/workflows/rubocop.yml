@@ -1,0 +1,39 @@
+name: RuboCop
+
+on:
+  push:
+    paths:
+      - "backend/**/*.rb"
+      - "backend/**/*.rake"
+      - "backend/Gemfile"
+      - "backend/.rubocop.yml"
+  pull_request:
+    paths:
+      - "backend/**/*.rb"
+      - "backend/**/*.rake"
+      - "backend/Gemfile"
+      - "backend/.rubocop.yml"
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2.0"
+          bundler-cache: true
+          working-directory: backend
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Run RuboCop
+        run: bundle exec rubocop

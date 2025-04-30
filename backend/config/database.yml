@@ -15,18 +15,20 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV.fetch("DB_USERNAME") { 'weather_app' } %>
   password: <%= ENV.fetch("DB_PASSWORD") { 'yourpassword' } %>
-  host: <%= ENV.fetch("DB_HOST") { 'localhost' } %>
+  host: <%= ENV.fetch("DB_HOST") { '127.0.0.1' } %>
+  port: <%= ENV.fetch("DB_PORT") { 13306 } %>
+  socket: false
 
 development:
   <<: *default
-  database: backend_development
+  database: weather_insight_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: backend_test
+  database: weather_insight_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

@@ -6,3 +6,82 @@ inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 # # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
 # Layout/SpaceInsideArrayLiteralBrackets:
 #   Enabled: false
+
+plugins:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.2
+  Exclude:
+    - "db/**/*"
+    - "config/**/*"
+    - "script/**/*"
+    - "bin/**/*"
+    - "vendor/**/*"
+    - "tmp/**/*"
+    - "node_modules/**/*"
+
+# 日本語のコメントを許可
+Style/AsciiComments:
+  Enabled: false
+
+# ドキュメントの無いpublic classを許可
+Style/Documentation:
+  Enabled: false
+
+# frozen_string_literal: trueのコメントを不要にする
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# 文字列のダブルクォートとシングルクォートを統一しない
+Style/StringLiterals:
+  Enabled: false
+
+# ブロックの行数制限
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+    - "config/routes.rb"
+
+# メソッドの行数制限
+Metrics/MethodLength:
+  Max: 20
+
+# クラスの行数制限
+Metrics/ClassLength:
+  Max: 200
+
+# モジュールの行数制限
+Metrics/ModuleLength:
+  Max: 200
+
+# ABCサイズ（メソッドの複雑さ）の制限
+Metrics/AbcSize:
+  Max: 30
+
+# 循環的複雑度の制限
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+# RSpecの設定
+RSpec/NestedGroups:
+  Max: 4
+
+RSpec/MultipleExpectations:
+  Max: 8
+
+RSpec/ExampleLength:
+  Max: 15
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+
+# Railsの設定
+Rails:
+  Enabled: true
+
+Rails/BulkChangeTable:
+  Enabled: false

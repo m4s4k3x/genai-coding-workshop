@@ -11,6 +11,8 @@ WeatherInsight は、世界各地の天気データを取得し、保存・分�
   - HTTParty（外部 API 連携）
 - **テスト**:
   - RSpec (rspec-rails)
+  - Factory Bot
+  - Shoulda Matchers
 - **フロントエンド**:
   - TypeScript
   - Node.js
@@ -202,7 +204,31 @@ GET /stats?city=Tokyo&days=7
 
 ## 開発
 
-- テストの実行: `bundle exec rspec`
+### テスト
+
+バックエンドのテストは RSpec を使用しています。以下のコマンドでテストを実行できます：
+
+```bash
+# すべてのテストを実行
+cd backend
+bundle exec rspec
+
+# 特定のファイルのテストを実行
+bundle exec rspec spec/models/city_spec.rb
+
+# 特定のディレクトリのテストを実行
+bundle exec rspec spec/controllers
+
+# フォーマットを指定して実行
+bundle exec rspec --format documentation
+
+# 失敗したテストのみ再実行
+bundle exec rspec --only-failures
+```
+
+テストの実行結果は標準出力に表示されます。テストカバレッジレポートを生成するには SimpleCov を使用しています。
+テスト実行後、`coverage`ディレクトリに HTML レポートが生成されます。
+
 - API ドキュメントは `/api/docs` にアクセスして確認可能
 
 ## トラブルシューティング
